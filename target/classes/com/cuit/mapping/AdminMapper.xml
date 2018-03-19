@@ -15,6 +15,10 @@
     from admin
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="findAdminByNameAndPwd"  resultMap="BaseResultMap" parameterType="com.cuit.domain.Admin">
+		select aname,password from admin 
+		where aname = #{aname,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+	</select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from admin
     where id = #{id,jdbcType=INTEGER}

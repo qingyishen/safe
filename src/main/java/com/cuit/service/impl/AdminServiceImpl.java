@@ -13,10 +13,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Resource  
 	private AdminMapper am;
-	@Override
-	public Admin getUserById(int id) {
-		//System.out.println("=============="+id);
-		return this.am.selectByPrimaryKey(id);
-	}
 
+	@Override
+	public Admin login(String aname, String password) {
+		return this.am.findAdminByNameAndPwd(aname,password);
+	}
 }
