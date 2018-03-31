@@ -1,16 +1,13 @@
 <%@ page language="java" pageEncoding="utf-8"%>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
-<title>登录成功...</title>
+<title>操作失败...</title>
 <link href="static/img/secured.jpg" rel="shortcut icon">
 </head>
 <body onload="run()">
-<shiro:hasRole name="admin">
-	欢迎[<shiro:principal/>]
-</shiro:hasRole>
-<br/><br/><h2><span id="totalSecond">3</span>秒后完成跳转!!!</h2>
+<h1><span style="color: green">操作成功！</span></h1>
+<h2><span id="totalSecond">3</span>秒后完成跳转!!!</h2>
 </body>
 <script language="javascript" type="text/javascript">
     var second = document.getElementById('totalSecond').innerText;
@@ -20,7 +17,7 @@
     {
         if (second < 1)
         {
-            location.href = '/safe/admin/home.jsp';
+            top.location.href = '/safe/admin/home.jsp';
         } else
         {
               document.getElementById('totalSecond').innerText = second--;

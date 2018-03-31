@@ -26,4 +26,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into t_user(username,password,email) 
 		values(#{username},#{password},#{email})
 	</insert>
+	
+	<update id="update" parameterType="com.cuit.domain.User">    
+        update t_user set username=#{username},password=#{password},email=#{email} where id=#{id}    
+    </update>
+    
+    <select id="findAll" resultType="com.cuit.domain.User">    
+        select * from t_user    
+    </select>
+    
+    <delete id="delete" parameterType="int">
+    	delete from t_user where id=#{id }
+    </delete>
+    
+    <update id="changer" parameterType="com.cuit.domain.User">
+    	update t_user set roleId=#{roleId} where id=#{id }
+    </update>
+    
+    <update id="changes" parameterType="com.cuit.domain.User">
+    	update t_user set state=#{state} where id=#{id }
+    </update>
+    
+    <update id="changeKey" parameterType="com.cuit.domain.User">    
+        update t_user set password=#{password} where id=#{id}</update>
 </mapper> 

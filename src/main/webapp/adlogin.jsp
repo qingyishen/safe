@@ -18,6 +18,7 @@
    <div class="container"style="margin-top: 200px;">
        <form class="col-sm-offset-4 col-sm-4 col-sm-offset-4 form form-horizontal" action="${pageContext.request.contextPath }/adminLogin" method="post" id="login_form">
              <h3 class="text-center">管理员登录</h3>
+             <div class="errorMsg"><span>${errorMsg }</span></div>
            <div class="form-group">
              <label for="username"class="col-sm-2 control-label">账&nbsp;号</label>
              <div class="col-sm-10">
@@ -31,6 +32,9 @@
              </div>
            </div>
 	        <button type="submit"class="btn btn-success center-block">登录</button>
+	        <div class="text-right">
+                <a href="${pageContext.request.contextPath }/checkLogin" >>>>已经登录？点击这里</a>
+            </div>
          </form>
    </div>
    <script type="text/javascript">

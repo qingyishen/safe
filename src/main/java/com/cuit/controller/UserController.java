@@ -18,6 +18,14 @@ public class UserController {
 	
 	@Resource
 	UserService us;
+	
+	/***
+	 * 登录
+	 * @param username
+	 * @param password
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/login")
 	public String login(@PathParam("username") String username,
 			@PathParam("password") String password,HttpServletRequest request){
@@ -38,6 +46,8 @@ public class UserController {
 					// 输出session
 					System.out.println("sessionId:"+session.getId()+"sessionHost:"+session.getHost()+"sessionTimeout:"+session.getTimeout());
 					session.setAttribute("username", username);
+					session.setAttribute("email", user.getEmail());
+					session.setAttribute("id", user.getId());
 					return "redirect:home.jsp";
 				}catch(Exception e){
 					e.printStackTrace();
@@ -56,6 +66,15 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * 注册
+	 * @param username
+	 * @param password
+	 * @param user
+	 * @param email
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/register")
 	public String addUser(@PathParam("username") String username,
 			@PathParam("password") String password,User user,
@@ -73,6 +92,35 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * 修改用户信息
+	 * @param id
+	 * @param user
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/update")
+	public String update(@PathParam("id") int id,User user,HttpServletRequest req){
+		System.out.println("====用户更新掉用===="+user.getUsername()+id);
+		user.setId(id);
+		user.setPassword(CryptographyUtil.md5(user.getPassword(),"salt"));
+		if(us.update(user)){
+			Subject subject = SecurityUtils.getSubject();
+			if(subject.isAuthenticated()){
+				subject.logout();
+			}
+			System.out.println("修改成功");
+			return "redirect:login.jsp";
+		}else{
+			req.setAttribute("errorMsg", "修改出错");
+			return "update";
+		}
+	}	
+	
+	/**
+	 * 退出登录
+	 * @return
+	 */
 	@RequestMapping("/logout")
 	public String loginout(){
 		Subject subject = SecurityUtils.getSubject();
@@ -80,6 +128,6 @@ public class UserController {
 			subject.logout();
 			System.out.println("退出登录成功");
 		}
-		return "redirect:login.jsp";
+		return "redirect:home.jsp";
 	}
 }

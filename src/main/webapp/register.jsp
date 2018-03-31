@@ -18,6 +18,7 @@
    <div class="container"style="margin-top: 200px;">
        <form class="col-sm-offset-4 col-sm-4 col-sm-offset-4 form form-horizontal" action="${pageContext.request.contextPath }/register" method="post" id="register_form">
              <h3 class="text-center">用户注册</h3>
+             <div class="errorMsg"><span>${errorMsg }</span></div>
            <div class="form-group">
              <label for="username"class="col-sm-2 control-label">账&nbsp;号</label>
              <div class="col-sm-10">

@@ -82,7 +82,7 @@
                     <c:if test="${username!=null }">
 	                    <!--导航栏右部，一般的登录 注册-->
 	                    <ul class="nav navbar-nav navbar-right">
-	                        <li><a href="#">欢迎你${username }</a></li>
+	                        <li><a href="update.jsp">欢迎你${username }</a></li>
 	                        <li><a href="logout">退出登陆</a></li>
 	                    </ul>
                     </c:if>

@@ -1,3 +1,5 @@
+<%@ page language="java" pageEncoding="utf-8"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE HTML>  
 <html>  
   <head>  
@@ -14,7 +16,8 @@
 		<nav class="navbar navbar-inverse">
 			<div class="container-fluid">
 				<div class="navbar-header">
-					<a class="navbar-brand" title="logoTitle" href="#">secured</a>
+					<a class="navbar-brand" title="logoTitle" href="#">
+					<span class="glyphicon glyphicon-leaf"></span>&nbsp;secured</a>
 			   </div>
 			   <div class="collapse navbar-collapse">
 				   <ul class="nav navbar-nav navbar-right">
@@ -22,7 +25,7 @@
 						   <a href="#">当前用户：<span class="badge">${username }</span></a>
 					   </li>
 					   <li>
-						   <a href="../logout">
+						   <a href="../adlogout">
 								 <span class="glyphicon glyphicon-lock"></span>退出登录</a>
 						</li>
 					</ul>
@@ -44,11 +47,8 @@
 				</li>
 			</ul>
 			<ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">  
-				<li><a href="mytask"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>  
-				<li><a href="#" target="mainFrame"><i class="glyphicon glyphicon-th-list"></i>菜单管理</a></li>  
-				<li><a href="#"><i class="glyphicon glyphicon-asterisk"></i>角色管理</a></li>  
-				<li><a href="#"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>  
-				<li><a href="#"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>  
+				<li><a href="../getAllUser" target="mainFrame"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>  
+				<li><a href="user/changeKey.jsp?id=${id }" target="mainFrame"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>  
 			</ul>  
 		 </div>
 		 <!-- 左侧导航和正文内容的分隔线 -->
