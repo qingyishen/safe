@@ -13,7 +13,7 @@
     <script src="${APP_PATH}/static/bootstrap/js/bootstrap.min.js"></script>
   </head>
   <body>
-  		<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  		<div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-1 main">
 				<h2 class="sub-header">所有用户</h2>
 				<table class="table table-hover">
 					<thead>

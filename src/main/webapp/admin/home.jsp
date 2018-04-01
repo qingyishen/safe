@@ -1,13 +1,16 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+<%
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
+%>
 <!DOCTYPE HTML>  
 <html>  
   <head>  
     <title>后台管理</title>  
-    <link href="../static/img/secured.jpg" rel="shortcut icon">
-	<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
-	<script src="../static/js/jquery-3.3.1.min.js"></script>
-    <script src="../static/bootstrap/js/bootstrap.min.js"></script>
+    <link href="${APP_PATH}/static/img/secured.jpg" rel="shortcut icon">
+	<link rel="stylesheet" href="${APP_PATH}/static/bootstrap/css/bootstrap.min.css">
+	<script src="${APP_PATH}/static/js/jquery-3.3.1.min.js"></script>
+    <script src="${APP_PATH}/static/bootstrap/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="assets/css/style.css">
   </head>  
   <body>  
@@ -43,13 +46,27 @@
 						<i class="glyphicon glyphicon-cog"></i>  
 						系统管理  
 						<span class="pull-right glyphicon glyphicon-chevron-down"></span>  
-					</a>  
+					</a> 
 				</li>
 			</ul>
 			<ul id="systemSetting" class="nav nav-list collapse secondmenu" style="height: 0px;">  
 				<li><a href="../getAllUser" target="mainFrame"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>  
 				<li><a href="user/changeKey.jsp?id=${id }" target="mainFrame"><i class="glyphicon glyphicon-edit"></i>修改密码</a></li>  
 			</ul>  
+
+			<ul class="nav nav-stacked nav-pills">
+				<li role="presentation">
+					<a href="#newsSetting" class="nav nav-stacked nav-pills" data-toggle="collapse">  
+						<i class="glyphicon glyphicon-search"></i>  
+						新闻管理  
+						<span class="pull-right glyphicon glyphicon-chevron-down"></span>  
+					</a>  
+				</li>
+			</ul>
+			<ul id="newsSetting" class="nav nav-list collapse secondmenu" style="height: 0px;"> 
+				<li><a href="../anews" target="mainFrame"><i class="glyphicon glyphicon-edit"></i>文章管理</a></li> 
+				<li><a href="news/addnews.jsp" target="mainFrame"><i class="glyphicon glyphicon-pencil"></i>新增文章</a></li>  
+			</ul>
 		 </div>
 		 <!-- 左侧导航和正文内容的分隔线 -->
 		 <div class="splitter"></div>

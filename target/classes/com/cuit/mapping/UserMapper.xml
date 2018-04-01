@@ -4,7 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cuit.dao.UserMapper">
 
-	<resultMap type="com.cuit.domain.User" id="UserResult">
+	<resultMap type="User" id="UserResult">
 		<result property="id" column="id"/>
 		<result property="username" column="username"/>
 		<result property="password" column="password"/>
@@ -22,16 +22,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from t_user where username=#{username}
 	</select>
 	
-	<insert id="addUser" parameterType="com.cuit.domain.User">
+	<insert id="addUser" parameterType="User">
 		insert into t_user(username,password,email) 
 		values(#{username},#{password},#{email})
 	</insert>
 	
-	<update id="update" parameterType="com.cuit.domain.User">    
+	<update id="update" parameterType="User">    
         update t_user set username=#{username},password=#{password},email=#{email} where id=#{id}    
     </update>
     
-    <select id="findAll" resultType="com.cuit.domain.User">    
+    <select id="findAll" resultType="User">    
         select * from t_user    
     </select>
     
@@ -39,14 +39,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     	delete from t_user where id=#{id }
     </delete>
     
-    <update id="changer" parameterType="com.cuit.domain.User">
+    <update id="changer" parameterType="User">
     	update t_user set roleId=#{roleId} where id=#{id }
     </update>
     
-    <update id="changes" parameterType="com.cuit.domain.User">
+    <update id="changes" parameterType="User">
     	update t_user set state=#{state} where id=#{id }
     </update>
     
-    <update id="changeKey" parameterType="com.cuit.domain.User">    
+    <update id="changeKey" parameterType="User">    
         update t_user set password=#{password} where id=#{id}</update>
 </mapper> 

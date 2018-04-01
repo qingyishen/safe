@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 import com.cuit.dao.UserMapper;
 import com.cuit.domain.User;
 import com.cuit.service.UserService;
-import com.github.pagehelper.PageHelper;
-
 
 @Service("userService")
 public class UserServiceImpl implements UserService{
