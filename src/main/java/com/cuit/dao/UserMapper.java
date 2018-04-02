@@ -26,4 +26,6 @@ public interface UserMapper {
 	boolean changes(User user); 
 	
 	boolean changeKey(User user); 
+	
+	List<User> selectByName(String username);  
 }

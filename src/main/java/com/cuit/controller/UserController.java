@@ -48,7 +48,7 @@ public class UserController {
 					session.setAttribute("username", username);
 					session.setAttribute("email", user.getEmail());
 					session.setAttribute("id", user.getId());
-					return "redirect:home.jsp";
+					return "redirect:index.jsp";
 				}catch(Exception e){
 					e.printStackTrace();
 					request.setAttribute("user", user);
@@ -56,7 +56,7 @@ public class UserController {
 					return "unauthorized";
 				}
 			}else{
-					return "home";
+					return "index";
 				}
 
 		}else{
@@ -128,6 +128,6 @@ public class UserController {
 			subject.logout();
 			System.out.println("退出登录成功");
 		}
-		return "redirect:home.jsp";
+		return "redirect:index.jsp";
 	}
 }

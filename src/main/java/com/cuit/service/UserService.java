@@ -34,6 +34,9 @@ public interface UserService {
 	boolean changes(User user);
 
 	//修改密码
-	public boolean changeKey(User user);    
+	boolean changeKey(User user);
+	
+	//通过用户名模糊查询
+	List<User> selectByName(String username);    
 	
 }

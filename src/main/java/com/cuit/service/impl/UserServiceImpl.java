@@ -68,4 +68,9 @@ public class UserServiceImpl implements UserService{
 		return um.changeKey(user);
 	}
 
+	@Override
+	public List<User> selectByName(String username) {
+		return um.selectByName(username);
+	}
+
 }

@@ -16,6 +16,12 @@
   	<div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-1 main">
 			<h1>${msg}</h1>
 			<h2 class="sub-header">所有新闻</h2>
+			<form class="navbar-form navbar-right" role="search" action="${APP_PATH}/selectByTitle">
+	                <div class="form-group">
+	                    <input type="text" class="form-control" placeholder="请输入新闻标题关键字" name="title">
+	                </div>
+	                <button type="submit" class="btn navbar-btn">搜索</button>
+	        </form>
 			<table class="table table-hover">
 				<thead>
 					<tr>

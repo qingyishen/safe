@@ -19,4 +19,10 @@ public interface NewsService {
 
 	//更新文章
 	boolean updateNews(News news);
+
+	//通过id查询
+	List<News> selectNewsById(Integer id);
+
+	//通过标题关键字查询
+	List<News> selectByTitle(String title);
 }

@@ -48,5 +48,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </update>
     
     <update id="changeKey" parameterType="User">    
-        update t_user set password=#{password} where id=#{id}</update>
+        update t_user set password=#{password} where id=#{id}
+    </update>
+    
+    <select id="selectByName" parameterType="String" resultType="User">
+    	select * from t_user where username like '%${_parameter}%'
+    </select>
 </mapper> 

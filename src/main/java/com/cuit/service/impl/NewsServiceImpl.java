@@ -41,4 +41,14 @@ public class NewsServiceImpl implements NewsService{
 		return nm.updateNews(news);
 	}
 
+	@Override
+	public List<News> selectNewsById(Integer id) {
+		return nm.selectNewsById(id);
+	}
+
+	@Override
+	public List<News> selectByTitle(String title) {
+		return nm.selectByTitle(title);
+	}
+
 }

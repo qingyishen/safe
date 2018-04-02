@@ -15,6 +15,13 @@
   <body>
   		<div class="col-sm-9 col-sm-offset-3 col-md-11 col-md-offset-1 main">
 				<h2 class="sub-header">所有用户</h2>
+				<!--搜索表单-->
+	            <form class="navbar-form navbar-right" role="search" action="${APP_PATH}/selectByName">
+	                <div class="form-group">
+	                    <input type="text" class="form-control" placeholder="请输入用户名关键字" name="username">
+	                </div>
+	                <button type="submit" class="btn navbar-btn">搜索</button>
+	            </form>
 				<table class="table table-hover">
 					<thead>
 						<tr>

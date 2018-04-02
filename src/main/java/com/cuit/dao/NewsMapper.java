@@ -15,4 +15,8 @@ public interface NewsMapper {
 	News findById(int id);
 	
 	boolean updateNews(News news);
+	
+	List<News> selectNewsById(Integer id);
+	
+	List<News> selectByTitle(String title);
 }

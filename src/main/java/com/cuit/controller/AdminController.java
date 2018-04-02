@@ -91,7 +91,7 @@ public class AdminController {
 			subject.logout();
 			System.out.println("退出登录成功");
 		}
-		return "redirect:home.jsp";
+		return "redirect:index.jsp";
 	}
 	
 	/**
@@ -106,6 +106,24 @@ public class AdminController {
 			HttpServletRequest req){
 		PageHelper.startPage(pn, 5);
 		List<User> user = us.findAll();
+		PageInfo pageUser = new PageInfo(user);
+		req.setAttribute("userList", pageUser);  
+		return "admin/user/allUser";
+	}
+	
+	/**
+	 * 通过姓名模糊查询用户
+	 * @param pn
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/selectByName")
+	public String selectByName(@PathParam("username") String username,
+			@RequestParam(value="pn",defaultValue="1")Integer pn,
+			HttpServletRequest req){
+		System.out.println("调用了模糊查询=="+username);
+		PageHelper.startPage(pn, 5);
+		List<User> user = us.selectByName(username);
 		PageInfo pageUser = new PageInfo(user);
 		req.setAttribute("userList", pageUser);  
 		return "admin/user/allUser";
@@ -178,7 +196,11 @@ public class AdminController {
 		user.setId(id);
 		user.setPassword(CryptographyUtil.md5(user.getPassword(),"salt"));
 		if(us.changeKey(user)){
-			return "ok";
+			Subject subject = SecurityUtils.getSubject();
+			if(subject.isAuthenticated()){
+				subject.logout();
+			}
+			return "adlogin";
 		}else{
 			return "error";
 		}

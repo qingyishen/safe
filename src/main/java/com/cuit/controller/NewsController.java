@@ -1,11 +1,14 @@
 package com.cuit.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -56,6 +59,29 @@ public class NewsController {
 	}
 	
 	/**
+	 * 通过标题关键字查询文章后台
+	 * @param pn
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/selectByTitle")
+	public String selectByTitle(@PathParam("title") String title,
+			@RequestParam(value="pn",defaultValue="1") Integer pn,
+			HttpServletRequest req){
+		try {
+			PageHelper.startPage(pn, 8);
+			PageHelper.orderBy("id desc");//设置为倒叙
+			List<News> news = ns.selectByTitle(title);
+			PageInfo page = new PageInfo(news);
+			req.setAttribute("news", page);
+			return "/admin/news/adminPageList";
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	
+	/**
 	 * 删除文章
 	 * @param req
 	 * @param id
@@ -88,10 +114,8 @@ public class NewsController {
 	
 	/**
 	 * 更新文章
-	 * @param blog
-	 * @param model
-	 * @param request
-	 * @param attributes
+	 * @param news
+	 * @param req
 	 * @return
 	 */
 	@RequestMapping("/updateNews")
@@ -104,5 +128,72 @@ public class NewsController {
 		}
 		req.setAttribute("msg", "修改文章出错");
 		return "error";
+	}
+	
+	/**
+	 * 查询文章显示前台首页
+	 * @param pageNum
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/page")
+	public String page(
+			@RequestParam(value="pageNum",defaultValue="1")Integer pageNum,
+			HttpServletRequest req
+			){
+		try {
+			PageHelper.startPage(pageNum, 5);
+			PageHelper.orderBy("id desc");//设置为倒叙
+			List<News> news =ns.selectAllNews();
+			PageInfo page = new PageInfo(news);
+			req.setAttribute("pageInfo", page);
+			return "home";
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	
+	/**
+	 * 通过传入页数查询文章显示前台首页
+	 * @param pageNum
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/page/{pageNum}")
+	public String page2(
+			@PathVariable("pageNum") Integer pageNum,
+			HttpServletRequest req
+			){
+		try {
+			PageHelper.startPage(pageNum,5);
+			PageHelper.orderBy("id desc");//设置为倒叙
+			List<News> news =ns.selectAllNews();
+			PageInfo page = new PageInfo(news);
+			req.setAttribute("pageInfo", page);
+			return "home";
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	
+	/**
+	 * 通过id查找具体的文章
+	 * @param id
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("/selectNewsById")
+	public String selectNewsById(@RequestParam("id") Integer id,HttpServletRequest req){
+		try {
+			List<News> news = new ArrayList<News>();
+			news =  this.ns.selectNewsById(id);
+			req.setAttribute("news", news.get(0));
+			return "detail";
+		} catch (Exception e) {
+			System.out.println(e);
+			return null;
+		}
 	}
 }

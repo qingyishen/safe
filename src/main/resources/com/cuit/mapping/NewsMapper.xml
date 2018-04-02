@@ -28,7 +28,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from t_news where id=#{id}
 	</select>
 	
+	<select id="selectNewsById" parameterType="int" resultType="News">
+		select * from t_news where id=#{id}
+	</select>
+	
 	<update id="updateNews" parameterType="News">
 		update t_news set title=#{title},article=#{article} where id=#{id}
 	</update>
+    
+    <select id="selectByTitle" parameterType="String" resultType="News">
+    	select * from t_news where title like '%${_parameter}%'
+    </select>
 </mapper>
