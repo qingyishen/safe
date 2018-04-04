@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cuit.dao.TopicMapper">
+
+	<resultMap type="Topic" id="TopicResult">
+		<result property="id" column="id"/>
+		<result property="title" column="title"/>
+		<result property="pubtime" column="pubtime"/>
+		<result property="detail" column="detail"/>
+		<result property="edituser" column="edituser"/>
+	</resultMap>
+	
+		 <resultMap id="queryForListMap" type="Topic">
+            <result property="id" column="id"/>
+			<result property="title" column="title"/>
+			<result property="pubtime" column="pubtime"/>
+			<result property="detail" column="detail"/>
+			<result property="edituser" column="edituser"/>
+        <collection property="answer" javaType="java.util.List" ofType="Answer">
+	        <result property="id" column="id"/>
+			<result property="content" column="content"/>
+			<result property="answeruser" column="answeruser"/>
+			<result property="pubtime2" column="pubtime2"/>
+			<result property="topicId" column="topicId"/>
+        </collection>
+    </resultMap>
+	
+	<insert id="addTopic" parameterType="Topic">
+		insert into t_topic (title,pubtime,detail,edituser)
+    	values(#{title},#{pubtime},#{detail},#{edituser})
+	</insert>
+	
+	<select id="findAllByName" parameterType="String" resultType="Topic">
+		select * from t_topic where edituser=#{edituser}
+	</select>
+	
+	<select id="findAll" parameterType="String" resultType="Topic">
+		select * from t_topic
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from t_topic where id=#{id}
+	</delete>
+	
+	<select id="selectTopicById" parameterType="int" resultType="Topic">
+		select * from t_topic where id=#{id}
+	</select>
+	
+	<update id="editTopic" parameterType="Topic">
+		update t_topic set title=#{title},detail=#{detail} where id=#{id}
+	</update>
+	
+	<select id="selectTopicAnswerById" resultMap="queryForListMap">
+		select content,answeruser,pubtime2,topicId from t_answer a,t_topic t where t.id=${_parameter} and a.topicId=${_parameter}
+	</select>
+</mapper>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cuit.dao.AnswerMapper">
+
+	<resultMap type="Answer" id="AnswerResult">
+		<result property="id" column="id"/>
+		<result property="content" column="content"/>
+		<result property="answeruser" column="answeruser"/>
+		<result property="pubtime2" column="pubtime2"/>
+		<result property="topicId" column="topicId"/>
+	</resultMap>
+	
+	<insert id="addAnswer" parameterType="Answer">
+		insert into t_answer (content,answeruser,pubtime2,topicId) 
+		values (#{content},#{answeruser},#{pubtime2},#{topicId})
+	</insert>
+	
+	<select id="replyNum" parameterType="int" resultType="int">
+		select count(*) from t_answer where topicId=#{topicId}
+	</select>
+</mapper>

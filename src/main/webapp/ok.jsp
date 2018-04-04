@@ -17,7 +17,7 @@
     {
         if (second < 1)
         {
-            top.location.href = '/safe/admin/home.jsp';
+            top.location.href = '/safe/frontPage/home.jsp';
         } else
         {
               document.getElementById('totalSecond').innerText = second--;
