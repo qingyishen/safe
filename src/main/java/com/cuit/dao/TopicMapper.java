@@ -18,5 +18,9 @@ public interface TopicMapper {
 	
 	List<Topic> findAll();
 	
+	List<Topic> findAll2();
+	
 	List<Topic> selectTopicAnswerById(int id);
+	
+	boolean change(Topic topic);
 }

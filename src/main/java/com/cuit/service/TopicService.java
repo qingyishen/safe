@@ -28,4 +28,10 @@ public interface TopicService {
 	//通过id查询主题和回复信息
 	List<Topic> selectTopicAnswerById(int id);
 
+	//切换主题状态
+	boolean change(Topic topic);
+
+	//后台查询主题
+	List<Topic> findAll2();
+
 }

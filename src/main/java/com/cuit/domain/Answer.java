@@ -2,6 +2,7 @@ package com.cuit.domain;
 
 public class Answer {
 	private int id;
+	private int state2;
 	private String content;
 	private String answeruser;
 	private String pubtime2;
@@ -11,6 +12,12 @@ public class Answer {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getState2() {
+		return state2;
+	}
+	public void setState2(int state2) {
+		this.state2 = state2;
 	}
 	public String getPubtime2() {
 		return pubtime2;

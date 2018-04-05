@@ -45,10 +45,19 @@ public class TopicServiceImpl implements TopicService{
 	public List<Topic> findAll() {
 		return tm.findAll();
 	}
-
+	
+	@Override
+	public List<Topic> findAll2() {
+		return tm.findAll2();
+	}
 
 	@Override
 	public List<Topic> selectTopicAnswerById(int id) {
 		return tm.selectTopicAnswerById(id);
+	}
+
+	@Override
+	public boolean change(Topic topic) {
+		return tm.change(topic);
 	}
 }

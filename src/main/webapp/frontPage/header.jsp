@@ -9,7 +9,7 @@
                     <ul class="nav navbar-nav">                        
                         <li><a href="${APP_PATH}">首页</a></li>
                         <li><a href="#">教程</a></li>
-                        <li><a href="#">资料下载</a></li>
+                        <li><a href="${APP_PATH}/getAllSource2">资料下载</a></li>
                         <li><a href="${APP_PATH}/selectAllTopic2">留言板</a></li>
                         <li><a href="${APP_PATH}/frontPage/home.jsp">个人中心</a></li>
                         <li><a href="${APP_PATH}/about.jsp">关于</a></li>

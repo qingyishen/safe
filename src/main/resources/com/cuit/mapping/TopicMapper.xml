@@ -6,20 +6,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="Topic" id="TopicResult">
 		<result property="id" column="id"/>
+		<result property="state" column="state"/>
 		<result property="title" column="title"/>
 		<result property="pubtime" column="pubtime"/>
 		<result property="detail" column="detail"/>
 		<result property="edituser" column="edituser"/>
 	</resultMap>
 	
-		 <resultMap id="queryForListMap" type="Topic">
+	<resultMap id="queryForListMap" type="Topic">
             <result property="id" column="id"/>
+            <result property="state" column="state"/>
 			<result property="title" column="title"/>
 			<result property="pubtime" column="pubtime"/>
 			<result property="detail" column="detail"/>
 			<result property="edituser" column="edituser"/>
         <collection property="answer" javaType="java.util.List" ofType="Answer">
 	        <result property="id" column="id"/>
+	        <result property="state2" column="state2"/>
 			<result property="content" column="content"/>
 			<result property="answeruser" column="answeruser"/>
 			<result property="pubtime2" column="pubtime2"/>
@@ -33,10 +36,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<select id="findAllByName" parameterType="String" resultType="Topic">
-		select * from t_topic where edituser=#{edituser}
+		select * from t_topic where edituser=#{edituser} and state!=0
 	</select>
 	
 	<select id="findAll" parameterType="String" resultType="Topic">
+		select * from t_topic where state!=0
+	</select>
+	
+	<select id="findAll2" parameterType="String" resultType="Topic">
 		select * from t_topic
 	</select>
 	
@@ -53,6 +60,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<select id="selectTopicAnswerById" resultMap="queryForListMap">
-		select content,answeruser,pubtime2,topicId from t_answer a,t_topic t where t.id=${_parameter} and a.topicId=${_parameter}
+		select content,answeruser,pubtime2,topicId,state2 from t_answer a,t_topic t where t.id=${_parameter} and a.topicId=${_parameter} and state!=0
 	</select>
+	
+	<update id="change" parameterType="Topic">
+    	update t_topic set state=#{state} where id=#{id }
+    </update>
 </mapper>

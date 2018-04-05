@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.cuit.domain.Answer;
 import com.cuit.domain.Topic;
 import com.cuit.service.AnswerService;
 import com.cuit.service.TopicService;
@@ -92,6 +91,28 @@ public class TopicController {
 	}
 	
 	/**
+	 * 后台查询
+	 * @param pn
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping("selectAllTopic3")
+	public String selectAllTopic3(@RequestParam(value="pn",defaultValue="1")Integer pn,
+			HttpServletRequest req){
+		Subject subject=SecurityUtils.getSubject();
+		if(subject.isAuthenticated()){
+			System.out.println("==后台调用了查询==");
+			PageHelper.startPage(pn, 5);
+			List<Topic> topics = ts.findAll2();
+			PageInfo pageTopics = new PageInfo(topics);
+			req.setAttribute("topicLists", pageTopics);  
+			return "admin/bbs/allTopic";
+		}else{
+			return "unauthorized";
+		}
+	}
+	
+	/**
 	 * 通过id查询主题
 	 * @param id
 	 * @param req
@@ -132,7 +153,7 @@ public class TopicController {
 		}
 	}
 	/**
-	 *删除主题 
+	 *删除主题 通过id
 	 * @param id
 	 * @return
 	 */
@@ -152,14 +173,40 @@ public class TopicController {
 	@RequestMapping("selectTopicAnswerById")
 	public String selectTopicAnswerById(@PathParam("id") int id,HttpServletRequest req){
 		System.out.println("留言板调用了id查询"+id);
-		int replyNum = as.replyNum(id);
-		req.setAttribute("replyNum", replyNum);
-		
-		Topic list = ts.selectTopicById(id);
-		req.setAttribute("list", list);
-		
-		List<Topic> lists = ts.selectTopicAnswerById(id);
-		req.setAttribute("lists", lists);
-		return "frontPage/detail";
+		Subject subject=SecurityUtils.getSubject();
+		if(subject.isAuthenticated()){
+			int replyNum = as.replyNum(id);
+			req.setAttribute("replyNum", replyNum);
+			
+			Topic list = ts.selectTopicById(id);
+			req.setAttribute("list", list);
+			
+			List<Topic> lists = ts.selectTopicAnswerById(id);
+			req.setAttribute("lists", lists);
+			return "frontPage/detail";
+		}else{
+			return "unauthorized";
+		}
+	}
+	
+	/**
+	 * 切换主题状态
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/updateState")
+	public String updateState(@PathParam("id") int id){
+		Topic topic = ts.selectTopicById(id);
+		System.out.println("====执行了主题状态切换==="+topic.getState());
+		if(topic.getState()==0){
+			topic.setState(1);
+		}else{
+			topic.setState(0);
+		}
+		if(ts.change(topic)){
+			return "redirect:/selectAllTopic3";
+		}else{
+			return "error";
+		}
 	}
 }

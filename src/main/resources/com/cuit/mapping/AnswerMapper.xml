@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap type="Answer" id="AnswerResult">
 		<result property="id" column="id"/>
+		<result property="state2" column="state2"/>
 		<result property="content" column="content"/>
 		<result property="answeruser" column="answeruser"/>
 		<result property="pubtime2" column="pubtime2"/>
@@ -20,4 +21,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="replyNum" parameterType="int" resultType="int">
 		select count(*) from t_answer where topicId=#{topicId}
 	</select>
+	
+	<select id="findAll" resultType="Answer">
+		select * from t_answer
+	</select>
+	
+	<delete id="delete" parameterType="int">
+		delete from t_answer where id=#{id}
+	</delete>
+	
+	<select id="selectAnswerById" parameterType="int" resultType="Answer">
+		select * from t_answer where id=#{id}
+	</select>
+	
+	<update id="change" parameterType="Answer">
+    	update t_answer set state2=#{state2} where id=#{id }
+    </update>
 </mapper>

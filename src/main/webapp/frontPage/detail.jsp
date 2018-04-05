@@ -94,7 +94,12 @@
 					</tr>
 					<tr>
 						<td height="160" align="left" valign="top" style="padding:10px;">
-							<c:out value="${answer.content}" escapeXml="false"/>
+							<c:if test="${answer.state2==0}">
+								该回复已被屏蔽！！！
+							</c:if>
+							<c:if test="${answer.state2==1}">
+								<c:out value="${answer.content}" escapeXml="false"/>
+							</c:if>
 						</td>
 					</tr>
 					<tr>
@@ -124,7 +129,7 @@
 							<button class="btn btn-primary">提交</button>
 						</div>
 						 <div class="text-right">
-			                <a href="${APP_PATH }selectAllTopic2" >返回上一页</a>
+			                <a href="${APP_PATH }/selectAllTopic2" >返回上一页</a>
 			            </div>
 					</div>
 				</div>

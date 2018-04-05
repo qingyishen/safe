@@ -28,7 +28,7 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	<!-- 配置文件上传 -->
+	<!-- 定义文件解释器 -->  
 	<bean id="multipartResolver"  
         class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
         <!-- 默认编码 -->

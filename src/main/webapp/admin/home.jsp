@@ -64,8 +64,36 @@
 				</li>
 			</ul>
 			<ul id="newsSetting" class="nav nav-list collapse secondmenu" style="height: 0px;"> 
-				<li><a href="../anews" target="mainFrame"><i class="glyphicon glyphicon-edit"></i>文章管理</a></li> 
-				<li><a href="news/addnews.jsp" target="mainFrame"><i class="glyphicon glyphicon-pencil"></i>新增文章</a></li>  
+				<li><a href="../anews" target="mainFrame"><i class="glyphicon glyphicon-file"></i>文章管理</a></li> 
+				<li><a href="news/addnews.jsp" target="mainFrame"><i class="glyphicon glyphicon-edit"></i>新增文章</a></li>  
+			</ul>
+			
+			<ul class="nav nav-stacked nav-pills">
+				<li role="presentation">
+					<a href="#topicSetting" class="nav nav-stacked nav-pills" data-toggle="collapse">  
+						<i class="glyphicon glyphicon-retweet"></i>  
+						互动管理 
+						<span class="pull-right glyphicon glyphicon-chevron-down"></span>  
+					</a>  
+				</li>
+			</ul>
+			<ul id="topicSetting" class="nav nav-list collapse secondmenu" style="height: 0px;"> 
+				<li><a href="../selectAllTopic3" target="mainFrame"><i class="glyphicon glyphicon-paperclip"></i>主题管理</a></li> 
+				<li><a href="../selectAllAnswer" target="mainFrame"><i class="glyphicon glyphicon-list-alt"></i>留言管理</a></li>  
+			</ul>
+			
+			<ul class="nav nav-stacked nav-pills">
+				<li role="presentation">
+					<a href="#documentSetting" class="nav nav-stacked nav-pills" data-toggle="collapse">  
+						<i class="glyphicon glyphicon-book"></i>  
+						资料管理  
+						<span class="pull-right glyphicon glyphicon-chevron-down"></span>  
+					</a>  
+				</li>
+			</ul>
+			<ul id="documentSetting" class="nav nav-list collapse secondmenu" style="height: 0px;"> 
+				<li><a href="${APP_PATH}/admin/source/upload.jsp" target="mainFrame"><i class="glyphicon glyphicon-cloud-upload"></i>资料上传</a></li> 
+				<li><a href="../getAllSource" target="mainFrame"><i class="glyphicon glyphicon-briefcase"></i>资料管理</a></li>  
 			</ul>
 		 </div>
 		 <!-- 左侧导航和正文内容的分隔线 -->
