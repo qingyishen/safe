@@ -6,7 +6,8 @@
 <!DOCTYPE HTML>  
 <html>
   <head>    
-    <title></title>
+    <title>资料下载</title>
+    <link href="${APP_PATH}/static/img/secured.jpg" rel="shortcut icon">
     <link rel="stylesheet" href="${APP_PATH}/static/bootstrap/css/bootstrap.min.css">
 	<script src="${APP_PATH}/static/js/jquery-3.3.1.min.js"></script>
     <script src="${APP_PATH}/static/bootstrap/js/bootstrap.min.js"></script>

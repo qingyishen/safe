@@ -55,7 +55,7 @@ public class SourceController {
         //MultipartFile自带的解析方法  
         file.transferTo(dir);  
         if(ss.addSource(source)){
-        	return "admin/allSource";  
+        	return "admin/source/allSource";  
         }else{
         	return "error";
         }

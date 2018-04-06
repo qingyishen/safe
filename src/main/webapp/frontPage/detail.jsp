@@ -15,6 +15,10 @@
 			src="${APP_PATH}/static/ckeditor/ckeditor.js"></script>
 	</head>
 	<body>
+		 <div class="text-right">
+		 	<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+            <a href="${APP_PATH }/selectAllTopic2" >返回上一页</a>
+         </div>
 		<div class="col-md-8 col-md-offset-2 main" >
 			<table width="100%" style="margin-top:8px;">
 				<tr bgcolor="#a8d7f1">
@@ -128,9 +132,6 @@
 						<div class="panel-body">
 							<button class="btn btn-primary">提交</button>
 						</div>
-						 <div class="text-right">
-			                <a href="${APP_PATH }/selectAllTopic2" >返回上一页</a>
-			            </div>
 					</div>
 				</div>
 			</form>

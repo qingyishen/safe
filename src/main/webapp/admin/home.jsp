@@ -93,6 +93,7 @@
 			</ul>
 			<ul id="documentSetting" class="nav nav-list collapse secondmenu" style="height: 0px;"> 
 				<li><a href="${APP_PATH}/admin/source/upload.jsp" target="mainFrame"><i class="glyphicon glyphicon-cloud-upload"></i>资料上传</a></li> 
+				<li><a href="${APP_PATH}/admin/movie/upload.jsp" target="mainFrame"><i class="glyphicon glyphicon-film"></i>视频上传</a></li> 
 				<li><a href="../getAllSource" target="mainFrame"><i class="glyphicon glyphicon-briefcase"></i>资料管理</a></li>  
 			</ul>
 		 </div>
